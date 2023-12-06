@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&family=Poppins:wght@200;400;600&display=swap');
+
+body,html {
+    height: 100%;
+    margin: 0;
+    font-family: poppins, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    text-align: center;
+}
+
+.logoImg{
+    width: 50%;
+}
+
+.logo-and-text {
+    background-color: #eebd63;
+    flex: 60%;
+    display: flex;
+    color: #312717;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 80%;
+}
+
+.logo-and-text img {
+    max-width: 80%;
+    height: auto;
+}
+
+.login-form h1 {
+    margin-bottom: 10%;
+}
+
+.login-form {
+    flex: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"],
+button {
+    padding: 10px;
+    margin: 5px;
+    width: 100%;
+    display: block;
+}
+
+button {
+    background-color: #ffffff;
+    border: 1.5px solid #46320f;
+
+    margin-top: 20px;
+    color: #46320f;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
