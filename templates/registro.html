@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FLUFF HUB</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/registro.css') }}">
 </head>
 <body>
   <div class="container">
     <div class="logo-and-text">
-      <img class="logoImg" src="img/logo.png" alt="Logo da Empresa">
+      <img class="logoImg" src="/img/logo.png" alt="Logo da Empresa">
     </div>
 
     <div class="login-form">
-        <h1>Cadastro</h1>
+        <h1>Registro</h1>
       <form action="login.py" method="POST">
         <input type="text" name="nome" placeholder="Seu Nome" required>
         <input type="text" name="email" placeholder="Email" required>
         <input type="password" name="senha" placeholder="Senha" required>
         <input type="password" name="confirmarSenha" placeholder="Confirmar senha" required>
-        <a class="criarCadastro" href="index.html">Já possui uma conta?</a>
+        <a class="criarCadastro" href="index.htmlcmd">Já possui uma conta?</a>
         <button type="submit">Entrar</button>
       </form>
     </div>

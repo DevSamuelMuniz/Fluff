@@ -1,20 +1,8 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField
-from wtforms.validators import InputRequired, EqualTo
+from flask import Flask, render_template
+app = Flask(__name__)
 
-class LoginForm(FlaskForm):
-   nome = StringField('Seu Nome', validators=[InputRequired()])
-   email = StringField('Email', validators=[InputRequired()])
-   senha = PasswordField('Senha', validators=[InputRequired()])
-   confirmarSenha = PasswordField('Confirmar senha', validators=[InputRequired(), EqualTo('senha')])
+@app.route("/")
+def index():
+    return render_template("index.html")
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
- form = LoginForm()
- if form.validate_on_submit():
-    name = form.nome.data
-    email = form.email.data
-    senha = form.senha.data
-
- return render_template('login.html', form=form)
-
+app.run(debug=True)
