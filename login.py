@@ -1,10 +1,8 @@
 import sqlite3
 
-# Conexão com o banco de dados
 conn = sqlite3.connect('usuarios.db')
 cursor = conn.cursor()
 
-# Criar tabela se não existir
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS usuarios (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,7 +24,6 @@ def cadastrar():
         print("As senhas não coincidem. Tente novamente.")
         return
 
-    # Inserir usuário no banco de dados
     cursor.execute('INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)', (nome, email, senha))
     conn.commit()
     print("Cadastro realizado com sucesso!")
@@ -36,7 +33,6 @@ def fazer_login():
     email = input("Digite seu email: ")
     senha = input("Digite sua senha: ")
 
-    # Buscar usuário no banco de dados
     cursor.execute('SELECT * FROM usuarios WHERE email = ? AND senha = ?', (email, senha))
     usuario = cursor.fetchone()
 
@@ -65,8 +61,6 @@ def menu():
         else:
             print("Opção inválida. Tente novamente.")
 
-# Iniciar o programa
 menu()
 
-# Fechar conexão com o banco de dados ao final do programa
 conn.close()

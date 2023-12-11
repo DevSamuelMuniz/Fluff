@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUFF HUB</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/registro.css') }}">
+    <title>FLUFF</title>
+    <link rel="stylesheet" href="/static/styles/registro.css">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/registro.css') }}"> -->
 </head>
 <body>
   <div class="container">
@@ -15,12 +16,12 @@
     <div class="login-form">
         <h1>Registro</h1>
       <form action="login.py" method="POST">
-        <input type="text" name="nome" placeholder="Seu Nome" required>
-        <input type="text" name="email" placeholder="Email" required>
-        <input type="password" name="senha" placeholder="Senha" required>
-        <input type="password" name="confirmarSenha" placeholder="Confirmar senha" required>
+        <input type="text" name="nome" id="nome" placeholder="Seu Nome" required>
+        <input type="email" name="email" id="email" placeholder="Email" required>
+        <input type="password" name="senha" id="senha" placeholder="Senha" required>
+        <input type="password" name="confirmar_senha" id="confirmar_senha" placeholder="Confirmar senha" required>
         <a class="criarCadastro" href="index.html">Já possui uma conta?</a>
-        <button id="botaoCadastro" type="submit">Entrar</button>
+        <input value="Cadastrar" id="botaoCadastro" type="submit">
       </form>
     </div>
   </div>

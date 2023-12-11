@@ -53,6 +53,7 @@ form {
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"],
 button {
     padding: 10px;
@@ -61,18 +62,22 @@ button {
     display: block;
 }
 
-button {
+#botaoCadastro {
     background-color: #ffffff;
     border: 1.5px solid #6685cf;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
 
     margin-top: 20px;
     color: #6685cf;
-    border-radius: 5pxa;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    
 }
 
-button:hover {
+#botaoCadastro:hover {
     background-color: #324570;
     color: white;
 }
