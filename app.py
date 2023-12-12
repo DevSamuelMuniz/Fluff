@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, redirect, render_template, request, url_for
 import mysql.connector
 
 app = Flask(__name__)
@@ -11,18 +11,37 @@ db = mysql.connector.connect(
     database="usuarios"
 )
 
-# Rota para a página inicial (index.html)
 @app.route('/')
 def index():
-    return render_template('index.html')  # Renderiza o arquivo index.html
+    return render_template('index.html')
 
-# Rota para a página de registro (registro.html)
 @app.route('/registro')
 def registro():
     return render_template('registro.html')
 
+@app.route('/cards', methods=['GET', 'POST'])
 
-# Rota para receber os dados POST do formulário de registro
+def cards():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        senha = request.form.get('senha')
+
+        # Lógica de verificação de login no banco de dados
+        cursor = db.cursor()
+        sql = "SELECT * FROM usuario WHERE email = %s AND senha = %s"
+        cursor.execute(sql, (email, senha))
+        user = cursor.fetchone()  # Retorna o primeiro registro encontrado
+
+        if user:
+            # Se as credenciais estiverem corretas, redirecione para a página de cards
+            return render_template('cards.html')
+        else:
+            # Se as credenciais estiverem incorretas, retorne para a página de login com uma mensagem de erro
+            mensagem = "Credenciais inválidas. Tente novamente."
+            return render_template('index.html', mensagem=mensagem)
+
+    return render_template('cards.html')
+
 @app.route('/cadastrar_usuario', methods=['POST'])
 def cadastrar_usuario():
     if request.method == 'POST':
@@ -31,18 +50,22 @@ def cadastrar_usuario():
         email = data.get('email')
         senha = data.get('senha')
 
-        # Insere os dados no banco de dados
+        # Verificar se o usuário já está registrado no banco de dados
         cursor = db.cursor()
-        sql = "INSERT INTO usuario (nome, email, senha) VALUES (%s, %s, %s)"
-        val = (nome, email, senha)
-        cursor.execute(sql, val)
-        db.commit()
+        sql = "SELECT * FROM usuario WHERE email = %s"
+        cursor.execute(sql, (email,))
+        result = cursor.fetchone()
 
-        # Fecha o cursor e a conexão com o banco de dados
-        cursor.close()
+        # Se não há registro, insira os dados no banco de dados
+        if not result:
+            cursor = db.cursor()
+            sql = "INSERT INTO usuario (nome, email, senha) VALUES (%s, %s, %s)"
+            val = (nome, email, senha)
+            cursor.execute(sql, val)
+            db.commit()
+            cursor.close()
 
-        # Redireciona para a página de registro após cadastrar o usuário
-        return render_template('registro.html')
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)  # Inicia o servidor Flask em modo de depuração
