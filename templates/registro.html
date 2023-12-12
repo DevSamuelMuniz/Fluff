@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FLUFF</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles/registro.css') }}"> -->
     <link rel="stylesheet" href="/static/styles/registro.css">
-    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/registro.css') }}"> -->
 </head>
 <body>
   <div class="container">
@@ -15,7 +15,7 @@
 
     <div class="login-form">
         <h1>Registro</h1>
-      <form action="login.py" method="POST">
+      <form action="cadastro" onsubmit="cadastraUsuario()">
         <input type="text" name="nome" id="nome" placeholder="Seu Nome" required>
         <input type="email" name="email" id="email" placeholder="Email" required>
         <input type="password" name="senha" id="senha" placeholder="Senha" required>
@@ -27,16 +27,6 @@
   </div>
 
 
-
-
-
-
-
-
-
-
-
-  <script type="text/javascript" src="{{ url_for('static', filename='js/my_script.js') }}"></script>
-
+  <script src="/static/js/registro.js"></script>
 </body>
 </html>

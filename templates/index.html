@@ -19,20 +19,12 @@
         <input type="text" name="email" placeholder="Email" required>
         <input type="password" name="senha" placeholder="Senha" required>
         <a class="criarCadastro" href="registro.html">Não possui uma conta?</a>
-        <button id="botaoLogin" type="submit">Entrar</button>
+        <input id="botaoLogin" type="submit" value="Entrar" onclick="entrar()">
       </form>
     </div>
   </div>
 
 
-
-
-
-
-
-
-
-  <script type="text/javascript" src="{{ url_for('static', filename='js/my_script.js') }}"></script>
-
+<script src="/static/js/main.js"></script>
 </body>
 </html>
