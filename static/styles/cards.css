@@ -23,10 +23,20 @@ header {
 }
 
 .esquerda {
-    background-color: #AFC2F0;
     width: 13%;
     display: flex;
     align-items: center;
+    position: relative;
+    right: 100px;
+
+    
+}
+
+.esquerdaI {
+    width: 13%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }
 
 .logoImg {
@@ -39,13 +49,14 @@ header {
     width: auto;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .pesquisa {
     background-color: #fff;
     width: 700px;
     height: 2rem;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     border-style: none;
     padding-left: 10px;
@@ -54,27 +65,29 @@ header {
 
 #lupa {
     margin-right: 1rem;
-    padding-left: 10px;
+    padding-left: 5px;
     font-size: 20;
+
 }
 
-.direita {
-    background-color: #AFC2F0;
-    width: 35%;
-    text-align: center;
+.direita {  
     display: flex;
+    width: 40%;
+    text-align: center;
     align-items: center;
-    gap: 1rem;
+    gap: 4rem;
 }
+
 
 p {
-    margin-left: 20rem;
+    margin-left: 8rem;
     font-weight: bold;
 }
+
 .btn {
     background-color: #7195e9;
     width: 150px;
-    height: 40px;
+    height: 10;
     text-decoration: none;
     color: white;
     border-radius: 8px;

@@ -1,7 +1,10 @@
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, session, url_for
 import mysql.connector
 
 app = Flask(__name__)
+
+app.secret_key = '7aBd&k0dldP9X3sasZ'
+
 
 # Estabelece a conexão com o banco de dados
 db = mysql.connector.connect(
@@ -21,19 +24,20 @@ def registro():
 
 @app.route('/cards', methods=['GET', 'POST'])
 
-def cards():
+def login():
     if request.method == 'POST':
         email = request.form.get('email')
         senha = request.form.get('senha')
 
         # Lógica de verificação de login no banco de dados
         cursor = db.cursor()
-        sql = "SELECT * FROM usuario WHERE email = %s AND senha = %s"
+        sql = "SELECT nome FROM usuario WHERE email = %s AND senha = %s"
         cursor.execute(sql, (email, senha))
-        user = cursor.fetchone()  # Retorna o primeiro registro encontrado
+        user = cursor.fetchone()
 
         if user:
-            # Se as credenciais estiverem corretas, redirecione para a página de cards
+            # Se as credenciais estiverem corretas, redirecione para a página de cards e armazene o nome do usuário na sessão
+            session['nome_usuario'] = user[0]  # user[0] contém o nome do usuário
             return render_template('cards.html')
         else:
             # Se as credenciais estiverem incorretas, retorne para a página de login com uma mensagem de erro
