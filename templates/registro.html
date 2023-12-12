@@ -4,29 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FLUFF</title>
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles/registro.css') }}"> -->
-    <link rel="stylesheet" href="/static/styles/registro.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/registro.css') }}">
 </head>
 <body>
   <div class="container">
     <div class="logo-and-text">
-      <img class="logoImg" src="/static/img/logo.png" alt="Logo da Empresa">
+      <img class="logoImg" src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo da Empresa">
     </div>
 
     <div class="login-form">
         <h1>Registro</h1>
-      <form action="cadastro" onsubmit="cadastraUsuario()">
+      <form action="{{ url_for('cadastrar_usuario') }}" method="POST">
         <input type="text" name="nome" id="nome" placeholder="Seu Nome" required>
         <input type="email" name="email" id="email" placeholder="Email" required>
         <input type="password" name="senha" id="senha" placeholder="Senha" required>
         <input type="password" name="confirmar_senha" id="confirmar_senha" placeholder="Confirmar senha" required>
-        <a class="criarCadastro" href="index.html">Já possui uma conta?</a>
+        <a class="criarCadastro" href="{{ url_for('index') }}">Já possui uma conta?</a>
         <input value="Cadastrar" id="botaoCadastro" type="submit">
       </form>
     </div>
   </div>
 
-
-  <script src="/static/js/registro.js"></script>
+  <script src="{{ url_for('static', filename='js/registro.js') }}"></script>
 </body>
 </html>
