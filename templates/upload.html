@@ -10,20 +10,20 @@
     <body>
         <header>
             <div class="esquerda">
-                <a href="cards.html"><img class="logoImg" src="/static/img/logo.png " alt="logoFluff"> </a>
+                <a href="{{ url_for('card') }}"><img class="logoImg" src="/static/img/logo.png " alt="logoFluff"> </a>
             </div>
             <div class="centro">
-                <input class="pesquisa">
+                <input class="pesquisa" placeholder="Pesquise sua Foto">
                     <i class="fa-solid fa-magnifying-glass" id="lupa"></i>
                 </input>
             </div>
             <div class="direita">
-                <p>Koda Muniz</p>
+                <p>{{ session['nome_usuario'] }}</p>
                 <i class="fa-solid fa-gear"></i>
             </div>
         </header>
         <div>
-            <a href="cards.html"><i class="fa-solid fa-arrow-left" id="seta"></i>        </a>
+            <a href="{{ url_for('card') }}"><i class="fa-solid fa-arrow-left" id="seta"></i></a>
         </div>
 
         <div class="txt">

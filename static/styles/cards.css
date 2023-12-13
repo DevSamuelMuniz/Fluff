@@ -23,20 +23,10 @@ header {
 }
 
 .esquerda {
+    background-color: #AFC2F0;
     width: 13%;
     display: flex;
     align-items: center;
-    position: relative;
-    right: 100px;
-
-    
-}
-
-.esquerdaI {
-    width: 13%;
-    display: flex;
-    align-items: center;
-    justify-content: end;
 }
 
 .logoImg {
@@ -49,45 +39,42 @@ header {
     width: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
 }
-
 .pesquisa {
     background-color: #fff;
     width: 700px;
     height: 2rem;
-    border-radius: 10px;
-    cursor: pointer;
+    border-radius: 20px;
+    cursor: text;
     border-style: none;
-    padding-left: 10px;
+    padding-left: 20px;
     font-size: 16px;
 }
 
 #lupa {
     margin-right: 1rem;
-    padding-left: 5px;
-    font-size: 20;
-
+    padding-left: 10px;
+    font-size: 20
 }
 
-.direita {  
-    display: flex;
-    width: 40%;
+.direita {
+    background-color: #AFC2F0;
+    width: 35%;
     text-align: center;
+    display: flex;
     align-items: center;
-    gap: 4rem;
+    gap: 1rem;
 }
-
 
 p {
-    margin-left: 8rem;
+    margin-left: 20rem;
     font-weight: bold;
 }
 
 .btn {
     background-color: #7195e9;
-    width: 150px;
-    height: 10;
+    width: 180px;
+    height: 40px;
     text-decoration: none;
     color: white;
     border-radius: 8px;
@@ -99,9 +86,10 @@ p {
     gap: 1rem;
     font-weight: bold;
 }
+
 .posts{
 
-    margin-top: 10rem;
+    margin-top: 6rem;
     margin-left: 10rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -110,31 +98,34 @@ p {
 .post {
     background-color: #AFC2F0;
     width: 258px;
-    height: 353px;
+    height: 400px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
 }
 
 .foto {
-    border-radius: 10px;
-    width: 80%;
+    border-radius: 5px;
+    width: 90%;
     height: 80%;
-    margin-left: 10%;
-    margin-top: 10%;
+    margin-left: 5%;
+    margin-top: 5%;
 }
 
 .icons {
     display: flex;
     justify-content: space-between;
-    margin-top: 0.5rem;
+    margin-top: 1.2rem;
 }
 
-.esquerda {
-    margin-left: 10%;
+.esquerdaI {
+    font-size: 20px;
+    margin-left: 8%;
 }
 
-.direitra {
-    margin-left: 50%;
-    background-color: red;
+.direitaI {
+    font-size: 22px;
+    display: flex;
+    gap: .8rem;
+    margin-right: 10%;
 }

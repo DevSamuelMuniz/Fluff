@@ -41,11 +41,12 @@ header {
     width: 700px;
     height: 2rem;
     border-radius: 20px;
-    cursor: pointer;
+    cursor: text;
     border-style: none;
-    padding-left: 10px;
+    padding-left: 20px;
     font-size: 16px;
 }
+
 #lupa {
     margin-right: 1rem;
     padding-left: 10px;
@@ -112,6 +113,7 @@ p {
     display: -ms-inline-box;
     text-align: center;
     padding: 0.8rem 2rem;
+    cursor: pointer;
     
 }
 

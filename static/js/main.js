@@ -1,28 +1,3 @@
-//ABA REGISTRO
-
-function cadastro(form) {
-    var nome = form.nome.value;
-    var email = form.email.value;
-    var senha = form.senha.value;
-    var confirmarSenha = form.confirmar_senha.value;
-
-    var temArroba = email.includes('@');
-
-    if (nome && email && senha && confirmarSenha && senha === confirmarSenha && temArroba) {
-        alert('Cadastro realizado com sucesso!');
-        window.location.href = 'index.html';
-    } else {
-        alert('Preencha todos os campos corretamente, incluindo um endereço de e-mail válido.');
-    }
-}
-
-//ABA LOGIN
-
-botaoLogin.addEventListener('click', entrar);
-function entrar(evento) {
-    window.location.href='/templates/cards.html';
-}
-
 //ABA UPLOAD E CARDS
 
 function addPost(button) {

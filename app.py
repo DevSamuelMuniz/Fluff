@@ -22,6 +22,15 @@ def index():
 def registro():
     return render_template('registro.html')
 
+@app.route('/upload')
+def upload():
+    return render_template('upload.html')
+
+@app.route('/card')
+def card():
+    return render_template('cards.html')
+
+
 @app.route('/cards', methods=['GET', 'POST'])
 
 def login():
