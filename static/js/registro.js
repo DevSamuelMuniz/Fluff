@@ -48,3 +48,37 @@ function cadastraUsuario(event) {
 
 // Adiciona um listener para o evento 'submit' do formulário
 document.querySelector("#registroForm").addEventListener("submit", cadastraUsuario);
+
+// Suponhamos que você tenha a imagem capturada em uma variável chamada 'capturedImage'
+
+// Crie um FileReader para ler a imagem como um URL de dados (data URL)
+var reader = new FileReader();
+
+reader.onload = function(event) {
+    // event.target.result contém o URL da imagem em base64
+    var imageData = event.target.result;
+
+    // Crie um objeto com a imagem em formato JSON
+    var imageObject = {
+        "imageData": imageData,
+        // Outros dados relacionados à imagem, se houver
+    };
+
+    // Envie o objeto JSON para o backend (pode ser feito via AJAX ou Fetch)
+    fetch('/upload', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(imageObject)
+    })
+    .then(response => {
+        // Lógica para lidar com a resposta do backend, se necessário
+    })
+    .catch(error => {
+        // Lógica para lidar com erros, se necessário
+    });
+};
+
+// Converte a imagem para base64
+reader.readAsDataURL(capturedImage);

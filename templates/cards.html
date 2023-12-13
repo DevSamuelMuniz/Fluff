@@ -13,17 +13,15 @@
             <a href="{{ url_for('card') }}"><img class="logoImg" src="/static/img/logo.png " alt="logoFluff"> </a>
         </div>
         <div class="centro">
-            <input class="pesquisa" placeholder="Pesquise sua Foto">
-                <i class="fa-solid fa-magnifying-glass" id="lupa"></i>
-            </input>
+            <input class="pesquisa" placeholder="Pesquise sua Foto"></input>
         </div>
         <div class="direita">
             <p>{{ session['nome_usuario'] }}</p>
             <i class="fa-solid fa-gear"></i>
+            <a href="{{ url_for('logout') }}"><i id="logout" class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
     </header>
-</header>
-<a href="{{ url_for('upload') }}" class="btn"> Upload <i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+<a href="{{ url_for('upload_form') }}" class="btn"> Upload  <i class="fa-solid fa-arrow-up-from-bracket"></i></a>
 <div class="posts">
     <div class="post">
         <img src="/static/img/gatoE.jpeg" alt="exemplo de post" class="foto">
@@ -37,6 +35,9 @@
             </div>
         </div>
     </div>
+    {% if mensagem %}
+        <p>{{ mensagem }}</p>
+    {% endif %}
     <div class="novoPost"></div>
     <script src="/static/js/main.js"></script> 
 </body>

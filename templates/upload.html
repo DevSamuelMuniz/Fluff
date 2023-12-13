@@ -13,13 +13,12 @@
                 <a href="{{ url_for('card') }}"><img class="logoImg" src="/static/img/logo.png " alt="logoFluff"> </a>
             </div>
             <div class="centro">
-                <input class="pesquisa" placeholder="Pesquise sua Foto">
-                    <i class="fa-solid fa-magnifying-glass" id="lupa"></i>
-                </input>
+                <input class="pesquisa" placeholder="Pesquise sua Foto"></input>
             </div>
             <div class="direita">
                 <p>{{ session['nome_usuario'] }}</p>
                 <i class="fa-solid fa-gear"></i>
+                <a href="{{ url_for('logout') }}"><i id="logout" class="fa-solid fa-arrow-right-from-bracket"></i></a>
             </div>
         </header>
         <div>
@@ -29,16 +28,17 @@
         <div class="txt">
             <img src="/static/img/upload.png" alt="Gato preto dentro de uma caixa de papelão" class="gato">
             <div class="upload">
-                <label  for="upload">Escolher Arquivo</label>
-                <input type="file" id="upload" >
+                <label for="upload">Escolher Arquivo</label>
+                <input type="file" id="upload">
             </div>
             <div class="c1">
-                <input type="text" name="inputTexto" id="inputTexto" class="" placeholder="Tíutlo da Imagem">
+                <input type="text" name="inputTexto" id="inputTexto" class="" placeholder="Título da Imagem">
             </div>
             <div class="c2">
                 <input type="text" name="inputDescricao" id="inputDescricao" placeholder="Descrição da Imagem">
             </div>
-            <button id="publicar" class="btn" onclick="addPost()">Publicar</button>
+            <button id="publicar" class="btn">Publicar</button>
+            
         </div>
        <script src="/static/js/main.js"></script> 
     </body>

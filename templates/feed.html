@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="enpt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="feed.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>feed</title>
+</head>
+<body>
+    <header>
+        <div class="esquerda">
+            <a href="{{ url_for('card') }}"><img class="logoImg" src="/static/img/logo.png " alt="logoFluff"> </a>
+        </div>
+        <div class="centro">
+            <input class="pesquisa" placeholder="Pesquise sua Foto"></input>
+        </div>
+        <div class="direita">
+            <p>{{ session['nome_usuario'] }}</p>
+            <i class="fa-solid fa-gear"></i>
+            <a href="{{ url_for('logout') }}"><i id="logout" class="fa-solid fa-arrow-right-from-bracket"></i></a>
+        </div>
+    </header>
+    <div class="setas">
+        <i class="fa-solid fa-arrow-left" id="setaE"></i>
+        <i class="fa-solid fa-arrow-right" id="setaD"></i>
+    </div>
+    <div class="feed">
+        <div class="esquerdaF">
+            <h2>Post Title</h2>
+            <div class="post">
+                <img src="coelhão.jpg" alt="" id="upload">
+            </div>
+            <div class="descrição">
+                <i class="fa-solid fa-bookmark"></i>
+                <p class="comentarioD">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                <i class="fa-solid fa-heart"></i>
+            </div>
+        </div>
+        <div class="direitaF">
+            <div class="usuario">
+                <img src="coelhão.jpg" alt="" class="fotoPerfil">
+                <p class="nome">Samuka Fede</p>
+            </div>
+            <div class="comentarios">
+                <h3>Comentarios</h3>
+                <div class="comentario">
+                    <p class="nomeU">Nome do usuario</p>
+                    <p class="conteudo">lopfkjsokyhlçb.ykop[ot tç .osphl.çn.p]~çl.phdf</p>
+                </div>
+                <div class="comentario">
+                    <p class="nomeU">Nome do usuario</p>
+                    <p class="conteudo">lopfkjsokyhlçb.ykop[ot tç .osphl.çn.p]~çl.phdf</p>
+                </div>
+                <div class="comentario">
+                    <p class="nomeU">Nome do usuario</p>
+                    <p class="conteudo">lopfkjsokyhlçb.ykop[ot tç .osphl.çn.p]~çl.phdf</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

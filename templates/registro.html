@@ -22,6 +22,9 @@
         <a class="criarCadastro" href="{{ url_for('index') }}">Já possui uma conta?</a>
         <input value="Cadastrar" id="botaoCadastro" type="submit">
       </form>
+      {% if mensagem %}
+      <p>{{ mensagem }}</p>
+  {% endif %}
     </div>
   </div>
 

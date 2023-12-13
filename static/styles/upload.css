@@ -47,20 +47,24 @@ header {
     font-size: 16px;
 }
 
-#lupa {
-    margin-right: 1rem;
-    padding-left: 10px;
-    font-size: 20
-
-}
 .direita {
     background-color: #AFC2F0;
-    width: 35%;
+    width: 40%;
     text-align: center;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
+
+.direita i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#logout {
+    color: black;
+}
+
 p {
     margin-left: 20rem;
     font-weight: bold;
@@ -70,6 +74,7 @@ p {
     margin-top: 2rem;
     margin-bottom: 2rem;
     margin-left: 1.5rem;
+    color: black;
 }
 .txt {
     display: flex;
