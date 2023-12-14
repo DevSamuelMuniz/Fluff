@@ -29,6 +29,10 @@ def upload_form():
 def card():
     return render_template('cards.html')
 
+@app.route('/feed')
+def feed():
+    return render_template('feed.html')
+
 
 @app.route('/cards', methods=['GET', 'POST'])
 def login():
@@ -114,6 +118,7 @@ def upload():
         return render_template('cards.html')
     else:
         return jsonify({'error': 'Dados incompletos ou ausentes.'}), 400
+
 
 
 if __name__ == '__main__':

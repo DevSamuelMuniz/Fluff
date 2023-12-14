@@ -22,7 +22,7 @@
         </div>
     </header>
 <a href="{{ url_for('upload_form') }}" class="btn"> Upload  <i class="fa-solid fa-arrow-up-from-bracket"></i></a>
-<div class="posts">
+<a style="color: black; text-decoration: none;" href="{{url_for('feed')}}"><div class="posts">
     <div class="post">
         <img src="/static/img/gatoE.jpeg" alt="exemplo de post" class="foto">
         <div class="icons">
@@ -38,7 +38,9 @@
     {% if mensagem %}
         <p>{{ mensagem }}</p>
     {% endif %}
-    <div class="novoPost"></div>
-    <script src="/static/js/main.js"></script> 
+<div class="novoPost"></div></a>
+   
+
+<script src="/static/js/main.js"></script> 
 </body>
 </html>
