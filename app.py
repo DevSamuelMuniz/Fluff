@@ -25,10 +25,6 @@ def upload_form():
     return render_template('upload.html')
 
 
-@app.route('/card')
-def card():
-    return render_template('cards.html')
-
 @app.route('/feed')
 def feed():
     return render_template('feed.html')
@@ -118,6 +114,18 @@ def upload():
         return render_template('cards.html')
     else:
         return jsonify({'error': 'Dados incompletos ou ausentes.'}), 400
+
+
+@app.route('/card')
+def card():
+    cursor = db.cursor()
+    sql = "SELECT imagem, titulo, descricao FROM posts"
+    cursor.execute(sql)
+    posts = cursor.fetchall()
+    cursor.close()
+    
+    return render_template('cards.html', posts=posts)
+
 
 
 
