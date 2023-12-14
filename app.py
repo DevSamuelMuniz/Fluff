@@ -52,6 +52,16 @@ def login():
 
     return render_template('index.html', mensagem=mensagem)
 
+@app.route('/get_posts')
+def get_posts():
+    cursor = db.cursor()
+    sql = "SELECT imagem, titulo, descricao FROM posts"
+    cursor.execute(sql)
+    posts = cursor.fetchall()
+    cursor.close()
+    
+    return jsonify(posts)
+
 
 @app.route('/logout')
 def logout():
@@ -101,7 +111,7 @@ def upload():
         db.commit()
         cursor.close()
 
-        return jsonify({'message': 'Imagem salva com sucesso no banco de dados!'})
+        return render_template('cards.html')
     else:
         return jsonify({'error': 'Dados incompletos ou ausentes.'}), 400
 

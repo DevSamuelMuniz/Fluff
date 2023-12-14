@@ -1,7 +1,7 @@
 function addPost() {
     const titulo = document.getElementById("inputTexto").value;
     const descricao = document.getElementById("inputDescricao").value;
-    const fotoUrl = document.getElementById("upload").value; // Este é apenas um exemplo, você precisa carregar a imagem de alguma forma
+    const fotoUrl = document.getElementById("imagemData").value; // Este é apenas um exemplo, você precisa carregar a imagem de alguma forma
 
     // Verifica se os campos obrigatórios foram preenchidos
     if (titulo && descricao && fotoUrl) {
@@ -38,6 +38,32 @@ function addPost() {
         alert("Preencha todos os campos obrigatórios.");
     }
 }
+
+
+// Função para adicionar posts na página cards.html
+function addPosts(posts) {
+    const postsContainer = document.querySelector('.posts');
+
+    posts.forEach(post => {
+        const { imagem, titulo, descricao } = post;
+
+        const novoPost = document.createElement("div");
+        novoPost.className = "post";
+
+        novoPost.innerHTML = `
+            <img src="data:image/png;base64,${imagem}" alt="${titulo}" class="foto">
+            <!-- Adicione outros elementos conforme necessário -->
+        `;
+
+        postsContainer.appendChild(novoPost);
+    });
+}
+
+// Requisição para obter os posts e adicionar à página
+fetch('/get_posts')
+    .then(response => response.json())
+    .then(posts => addPosts(posts))
+    .catch(error => console.error('Erro:', error));
 
 
 
