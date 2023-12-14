@@ -51,13 +51,20 @@ function addPosts(posts) {
         novoPost.className = "post";
 
         novoPost.innerHTML = `
-            <img src="data:image/png;base64,${imagem}" alt="${titulo}" class="foto">
-            <!-- Adicione outros elementos conforme necessário -->
-        `;
+        <img src="${imagem}" alt="${titulo}" class="foto">
+        <!-- Adicione outros elementos conforme necessário -->
+    `;
+    
 
         postsContainer.appendChild(novoPost);
     });
 }
+
+fetch('/get_posts')
+    .then(response => response.json())
+    .then(posts => addPosts(posts))
+    .catch(error => console.error('Erro:', error));
+
 
 // Requisição para obter os posts e adicionar à página
 fetch('/get_posts')
@@ -113,7 +120,6 @@ function publicar() {
 
             // URL para o servidor Python receber os dados
             let url = "upload";
-
             // Envia os dados para o servidor usando a função fazPost
             fazPost(url, body);
         };

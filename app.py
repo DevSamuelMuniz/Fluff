@@ -123,8 +123,9 @@ def card():
     cursor.execute(sql)
     posts = cursor.fetchall()
     cursor.close()
-    
+
     return render_template('cards.html', posts=posts)
+
 
 
 

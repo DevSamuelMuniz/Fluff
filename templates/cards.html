@@ -10,10 +10,10 @@
 <body>
     <header>
         <div class="esquerda">
-            <a href="{{ url_for('card') }}"><img class="logoImg" src="/static/img/logo.png " alt="logoFluff"> </a>
+            <a href="{{ url_for('card') }}"><img class="logoImg" src="/static/img/logo.png" alt="logoFluff"></a>
         </div>
         <div class="centro">
-            <input class="pesquisa" placeholder="Pesquise sua Foto"></input>
+            <input class="pesquisa" placeholder="Pesquise sua Foto">
         </div>
         <div class="direita">
             <p>{{ session['nome_usuario'] }}</p>
@@ -21,31 +21,31 @@
             <a href="{{ url_for('logout') }}"><i id="logout" class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
     </header>
-<a href="{{ url_for('upload_form') }}" class="btn"> Upload  <i class="fa-solid fa-arrow-up-from-bracket"></i></a>
-<a style="color: black; text-decoration: none;" href="{{url_for('feed')}}">
+
+    <a href="{{ url_for('upload_form') }}" class="btn"> Upload  <i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+
     <div class="posts">
         {% for post in posts %}
-    <div class="post">
-        <img src="/static/img/gatoE.jpeg" alt="exemplo de post" class="foto">
-        <div class="icons">
-            <div class="esquerdaI">
-                <i class="fa-regular fa-bookmark"></i>
+            <div class="post">
+                <img src="{{ url_for('static', filename=post[0]) }}" alt="Imagem do post" class="foto">
+                <h2>{{ post[1] }}</h2>
+                <p>{{ post[2] }}</p>
             </div>
-            <div class="direitaI">
-                <i class="fa-solid fa-share"></i>
-                <i class="fa-regular fa-heart"></i>
-            </div>
-        </div>
-        <h2>{{ post[1] }}</h2>
-      <p>{{ post[2] }}</p>
+        {% endfor %}
     </div>
-    {% endfor %}
-<div class="novoPost"></div></a>
-   
-{% if mensagem %}
-<p>{{ mensagem }}</p>
-{% endif %}
+    
 
-<script src="/static/js/main.js"></script> 
+    <!-- Se houver mensagens a serem exibidas -->
+    {% if mensagem %}
+        <p>{{ mensagem }}</p>
+    {% endif %}
+
+    <div class="novoPost"></div>
+    
+    {% if mensagem %}
+        <p>{{ mensagem }}</p>
+    {% endif %}
+
+    <script src="/static/js/main.js"></script> 
 </body>
 </html>
