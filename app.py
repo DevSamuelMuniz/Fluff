@@ -1,5 +1,6 @@
 from flask import Flask, redirect, jsonify, render_template, request, session, url_for
 import mysql.connector
+import base64
 
 app = Flask(__name__)
 
@@ -19,6 +20,10 @@ def index():
 @app.route('/registro')
 def registro():
     return render_template('registro.html')
+
+@app.route('/config')
+def config():
+    return render_template('config.html')
 
 @app.route('/upload_form')
 def upload_form():
@@ -43,24 +48,42 @@ def login():
         cursor.execute(sql, (email, senha))
         user = cursor.fetchone()
 
+        # Dentro da rota de login (/cards)
         if user:
             session['logged_in'] = True
             session['nome_usuario'] = user[0] 
+            session['email'] = email  # Adicione esta linha para armazenar o email do usuário na sessão
             return render_template('cards.html')
+
         else:
             mensagem = "Credenciais inválidas. Tente novamente."
 
     return render_template('index.html', mensagem=mensagem)
 
-@app.route('/get_posts')
-def get_posts():
+
+@app.route('/get_posts/<int:imagem>')
+def get_posts(imagem):
     cursor = db.cursor()
     sql = "SELECT imagem, titulo, descricao FROM posts"
     cursor.execute(sql)
     posts = cursor.fetchall()
     cursor.close()
-    
-    return jsonify(posts)
+
+    # Convert bytes to Base64 for the 'imagem' field
+    posts_with_base64 = []
+    for post in posts:
+        imagem_base64 = base64.b64encode(post['imagem']).decode('utf-8') if post['imagem'] else None
+        # Replace 'imagem' field in the post with Base64 string
+        post_dict = {
+            'imagem': imagem_base64,
+            'titulo': post['titulo'],
+            'descricao': post['descricao']
+        }
+        posts_with_base64.append(post_dict)
+
+    return jsonify(posts_with_base64)
+
+
 
 
 @app.route('/logout')
@@ -119,13 +142,84 @@ def upload():
 @app.route('/card')
 def card():
     cursor = db.cursor()
-    sql = "SELECT imagem, titulo, descricao FROM posts"
+    sql = "SELECT TO_BASE64(imagem) AS imagem_base64, titulo, descricao FROM posts"
     cursor.execute(sql)
     posts = cursor.fetchall()
     cursor.close()
 
-    return render_template('cards.html', posts=posts)
+    posts_with_base64 = []
+    for post in posts:
+        # Aqui, não é necessário decodificar a string 'post[0]' que contém a imagem em base64
+        imagem_base64 = post[0] if post[0] else None
+        post_dict = {
+            'imagem': imagem_base64,
+            'titulo': post[1],
+            'descricao': post[2]
+        }
+        posts_with_base64.append(post_dict)
 
+    return render_template('cards.html', posts=posts_with_base64)
+
+
+@app.route('/mudar', methods=['GET', 'POST'])
+def mudar():
+    mensagem = None
+
+    if request.method == 'POST':
+        nova_senha = request.form.get('nova_senha')
+        confirmar_nova_senha = request.form.get('confirmar_nova_senha')
+
+        # Verifica se as senhas coincidem
+        if nova_senha == confirmar_nova_senha:
+            # Obtém o email do usuário da sessão (você pode alterar conforme sua lógica de sessão)
+            email_usuario = session.get('email')
+
+            # Atualiza a senha no banco de dados
+            cursor = db.cursor()
+            sql = "UPDATE usuario SET senha = %s WHERE email = %s"
+            cursor.execute(sql, (nova_senha, email_usuario))
+            db.commit()
+            cursor.close()
+
+            mensagem = "Senha alterada com sucesso!"
+        else:
+            mensagem = "As senhas não coincidem. Tente novamente."
+
+    return render_template('mudar.html', mensagem=mensagem)
+
+@app.route('/apagar', methods=['GET', 'POST'])
+def apagar():
+    mensagem = None
+
+    if request.method == 'POST':
+        senha_confirmacao = request.form.get('nova_senha')
+
+        # Obtém o email do usuário da sessão (você pode alterar conforme sua lógica de sessão)
+        email_usuario = session.get('email')
+
+        cursor = db.cursor()
+        # Verifica se a senha de confirmação está correta para o usuário logado
+        sql = "SELECT nome FROM usuario WHERE email = %s AND senha = %s"
+        cursor.execute(sql, (email_usuario, senha_confirmacao))
+        user = cursor.fetchone()
+
+        if user:
+            # Se a senha de confirmação estiver correta, exclui o usuário da tabela
+            delete_sql = "DELETE FROM usuario WHERE email = %s"
+            cursor.execute(delete_sql, (email_usuario,))
+            db.commit()
+            cursor.close()
+
+            mensagem = "Sua conta foi excluída com sucesso!"
+            # Limpa os dados da sessão após a exclusão da conta
+            session.pop('logged_in', None)
+            session.pop('nome_usuario', None)
+            session.pop('email', None)
+            return redirect(url_for('index'))
+        else:
+            mensagem = "Senha de confirmação incorreta. Tente novamente."
+
+    return render_template('apagar.html', mensagem=mensagem)
 
 
 

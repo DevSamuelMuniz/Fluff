@@ -73,66 +73,6 @@ header {
 p {
     margin-left: 20rem;
     font-weight: bold;
-    position: relative;
-}
-
-.desc {
-    margin-left: 20rem;
-    font-weight: bold;
-    position: relative;
-    right: 300px;
-}
-
-h2{
-    position: relative;
-    left: 20px;
-}
-.btn {
-    background-color: #7195e9;
-    width: 180px;
-    height: 40px;
-    text-decoration: none;
-    color: white;
-    border-radius: 8px;
-    margin-top: 3rem;
-    margin-left: 85rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    font-weight: bold;
-}
-
-.posts{
-
-    margin-top: 6rem;
-    margin-left: 10rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.post {
-    background-color: #AFC2F0;
-    width: 258px;
-    height: 420px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 80px;
-}
-
-.foto {
-    border-radius: 5px;
-    width: 90%;
-    height: 80%;
-    margin-left: 5%;
-    margin-top: 5%;
-}
-
-.icons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1.2rem;
 }
 
 .esquerdaI {
@@ -145,4 +85,64 @@ h2{
     display: flex;
     gap: .8rem;
     margin-right: 10%;
+}
+
+.btnSenha {
+    padding: 10px;
+    margin: 20px auto; /* Adicione 'auto' para os lados esquerdo e direito */
+    width: 50%;
+    display: block;
+    background-color: #ffffff;
+    border: 1.5px solid #6685cf;
+    margin-top: 20px;
+    color: #6685cf;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+.btnSenha:hover {
+    background-color: #324570;
+    color: white;
+}
+
+
+.btnApagar {
+    padding: 10px;
+    margin: 20px auto; /* Adicione 'auto' para os lados esquerdo e direito */
+    width: 50%;
+    display: block;
+    background-color: #ffffff;
+    border: 1.5px solid #6685cf;
+    margin-top: 20px;
+    color: #6685cf;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+.btnApagar:hover {
+    background-color: #324570;
+    color: white;
+}
+
+.mudarSenha{
+    display: flex;
+    justify-content: center;
+    color: #6685cf;
+}
+
+.apagarConta{
+    display: flex;
+    justify-content: center;
+    color: #6685cf;
+}
+
+input[type="password"] {
+    width: 60%;
+    padding: 10px; 
+    margin: 0 auto; 
+    display: block; 
 }

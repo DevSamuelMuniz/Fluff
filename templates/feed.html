@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/feed.css') }}">
+    <link rel="shortcut icon" href="/static/img/logo.png" type="image/x-icon">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>feed</title>
 </head>
@@ -17,7 +19,7 @@
         </div>
         <div class="direita">
             <p>{{ session['nome_usuario'] }}</p>
-            <i class="fa-solid fa-gear"></i>
+            <a style="color: black;" href="{{ url_for('config') }}"><i class="fa-solid fa-gear"></i></a>
             <a href="{{ url_for('logout') }}"><i id="logout" class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
     </header>
