@@ -48,11 +48,10 @@ def login():
         cursor.execute(sql, (email, senha))
         user = cursor.fetchone()
 
-        # Dentro da rota de login (/cards)
         if user:
             session['logged_in'] = True
             session['nome_usuario'] = user[0] 
-            session['email'] = email  # Adicione esta linha para armazenar o email do usuário na sessão
+            session['email'] = email  
             return render_template('cards.html')
 
         else:
@@ -69,11 +68,9 @@ def get_posts(imagem):
     posts = cursor.fetchall()
     cursor.close()
 
-    # Convert bytes to Base64 for the 'imagem' field
     posts_with_base64 = []
     for post in posts:
         imagem_base64 = base64.b64encode(post['imagem']).decode('utf-8') if post['imagem'] else None
-        # Replace 'imagem' field in the post with Base64 string
         post_dict = {
             'imagem': imagem_base64,
             'titulo': post['titulo'],
@@ -82,8 +79,6 @@ def get_posts(imagem):
         posts_with_base64.append(post_dict)
 
     return jsonify(posts_with_base64)
-
-
 
 
 @app.route('/logout')
@@ -149,7 +144,6 @@ def card():
 
     posts_with_base64 = []
     for post in posts:
-        # Aqui, não é necessário decodificar a string 'post[0]' que contém a imagem em base64
         imagem_base64 = post[0] if post[0] else None
         post_dict = {
             'imagem': imagem_base64,
@@ -169,12 +163,9 @@ def mudar():
         nova_senha = request.form.get('nova_senha')
         confirmar_nova_senha = request.form.get('confirmar_nova_senha')
 
-        # Verifica se as senhas coincidem
         if nova_senha == confirmar_nova_senha:
-            # Obtém o email do usuário da sessão (você pode alterar conforme sua lógica de sessão)
             email_usuario = session.get('email')
 
-            # Atualiza a senha no banco de dados
             cursor = db.cursor()
             sql = "UPDATE usuario SET senha = %s WHERE email = %s"
             cursor.execute(sql, (nova_senha, email_usuario))
@@ -194,24 +185,20 @@ def apagar():
     if request.method == 'POST':
         senha_confirmacao = request.form.get('nova_senha')
 
-        # Obtém o email do usuário da sessão (você pode alterar conforme sua lógica de sessão)
         email_usuario = session.get('email')
 
         cursor = db.cursor()
-        # Verifica se a senha de confirmação está correta para o usuário logado
         sql = "SELECT nome FROM usuario WHERE email = %s AND senha = %s"
         cursor.execute(sql, (email_usuario, senha_confirmacao))
         user = cursor.fetchone()
 
         if user:
-            # Se a senha de confirmação estiver correta, exclui o usuário da tabela
             delete_sql = "DELETE FROM usuario WHERE email = %s"
             cursor.execute(delete_sql, (email_usuario,))
             db.commit()
             cursor.close()
 
             mensagem = "Sua conta foi excluída com sucesso!"
-            # Limpa os dados da sessão após a exclusão da conta
             session.pop('logged_in', None)
             session.pop('nome_usuario', None)
             session.pop('email', None)

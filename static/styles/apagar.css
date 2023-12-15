@@ -89,8 +89,7 @@ p {
 
 .btnSenha {
     padding: 10px;
-    margin: 20px auto; /* Adicione 'auto' para os lados esquerdo e direito */
-    width: 50%;
+    margin: 20px auto; 
     display: block;
     background-color: #ffffff;
     border: 1.5px solid #6685cf;
@@ -110,7 +109,7 @@ p {
 
 .btnApagar {
     padding: 10px;
-    margin: 20px auto; /* Adicione 'auto' para os lados esquerdo e direito */
+    margin: 20px auto;
     width: 50%;
     display: block;
     background-color: #ffffff;

@@ -29,7 +29,6 @@
     <div class="posts">
     {% for post in posts %}
         <div class="post">
-            <!-- Exibindo a imagem base64 como um elemento de imagem -->
             <img class="foto" src="/static/img/cat.jpg" alt="Imagem do Banco de Dados">
             <h2>{{ post['titulo'] }}</h2>
             <p class="desc" >{{ post['descricao'] }}</p>
@@ -37,10 +36,7 @@
     {% endfor %}
 </div>
     
-    
-
-    <!-- Se houver mensagens a serem exibidas -->
-    {% if mensagem %}
+        {% if mensagem %}
         <p>{{ mensagem }}</p>
     {% endif %}
 
